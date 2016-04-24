@@ -55,13 +55,17 @@ app.get('/:bridge/:date/update', function (req, res) {
 
     // Hawthorne
     // http://www.eco-public.com/api/h7q239dd/data/periode/101005157/?begin=20150911&end=20160422&step=4
-    // http://www.eco-public.com/api/h7q239dd/data/periode/102005157/?begin=20150911&end=20160422&step=4
+        // http://www.eco-public.com/api/h7q239dd/data/periode/102005157/?begin=20150911&end=20160422&step=4
     // http://www.eco-public.com/api/h7q239dd/data/periode/100005157?begin=20150911&end=20160422&step=4
+    console.log(uri + '1010' + bridgeId);
     superagent
-        .get(uri + '/1010' + bridgeId)
+        .get(uri + '1010' + bridgeId)
         .query({begin: req.params.date, end: req.params.date, step: 2})
         .end(function(err, res){
-            res.body.forEach(function(item) {
+            thing = JSON.parse(res.text);
+            console.log('wakka');
+            thing.forEach(function(item) {
+                r.table('tilikum').insert(item);
                 console.log(item);
             })
     });
