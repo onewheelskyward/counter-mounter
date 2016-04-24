@@ -1,0 +1,10 @@
+{
+  "db": {
+    "database": "countermounter",
+    "dbHost": "localhost",
+    "dbPort": 28015
+  },
+  "app": {
+    "port": 1234
+  }
+}
