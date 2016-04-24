@@ -9,8 +9,10 @@ var bodyParser = require('body-parser');
 var config = require('./config.json');
 var superagent = require('superagent');
 
+console.log(config.db.database);
+
 var r = require('rethinkdbdash')(
-    {host: config.db.host, port: config.db.port, database: config.db.database}
+    {host: config.db.host, port: config.db.port, db: config.db.database}
 );
 
 app.set('port', config.app.port);
@@ -65,7 +67,7 @@ app.get('/:bridge/:date/update', function (req, res) {
             thing = JSON.parse(res.text);
             console.log('wakka');
             thing.forEach(function(item) {
-                r.table('tilikum').insert(item);
+                r.table('tilikum').insert(item).run();
                 console.log(item);
             })
     });
