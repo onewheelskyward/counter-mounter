@@ -67,7 +67,7 @@ app.get('/:bridge/:date/update', function (req, res) {
             thing = JSON.parse(res.text);
             console.log('wakka');
             thing.forEach(function(item) {
-                r.table('tilikum').insert(item).run();
+                r.table(req.params.bridge).insert(item).run();
                 console.log(item);
             })
     });
